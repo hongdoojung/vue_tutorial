@@ -1,0 +1,44 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div
+  class="static"
+  v-bind:class="{ active: isActive, 'text-danger': hasError }"
+  id="example0"
+>{{el}}</div>
+
+<div id="example1" v-bind:class="classObject">{{el}}</div >
+
+
+<script>
+
+var el0 = '#example0'
+var vm0 = new Vue({
+    el : el0,
+    data : {
+        isActive: true,
+        hasError: true,
+        el : el0
+    }
+})
+
+var el1 = '#example1'
+var vm1 = new Vue({
+    el : el1,
+    data: {
+        isActive: true,
+        error: null,
+        el : el1
+    },
+    computed: {
+        classObject: function () {
+            return {
+                active: this.isActive && !this.error,
+                'text-danger': true
+                // this.error && this.error.type === 'fatal'
+            }
+        }
+    }
+})
+
+    
+</script>
