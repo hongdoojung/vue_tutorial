@@ -1,0 +1,41 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+
+    <p>Using mustaches: {{ rawHtml }}</p>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    <button v-on:click="isButtonDisabled=true" v-bind:disabled="isButtonDisabled">Button</button>
+
+    <div>
+        {{ number + 1 }}
+        {{ ok ? 'YES' : 'NO' }}
+        {{ message.split('').reverse().join('') }}
+    </div>
+    <div v-bind:id="'list-' + id">{{'list-' + id}}</div>
+
+    <p v-if="seen">이제 나를 볼 수 있어요</p>
+    <!-- <a v-bind:href="url"> ... </a> -->
+    <!-- <a v-on:click="doSomething"> ... </a> -->
+    <!-- <a v-bind:[attributeName]="url"> ... </a> -->
+    <!-- <a v-on:[eventName]="doSomething"> ... </a> -->
+    <!-- <form v-on:submit.prevent="onSubmit"> ... </form> -->
+
+</div>
+
+<script>
+var rawHtml = "<span style='color:red'>This should be red.</span>"
+
+new Vue({
+    data: {
+        rawHtml:rawHtml,
+        isButtonDisabled:false,
+        ok:true,
+        number:2,
+        message:"Hello, world!",
+        id:5,
+        seen:false
+    },
+    el: "#app"
+})
+
+</script>
