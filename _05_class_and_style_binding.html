@@ -6,8 +6,8 @@
   id="example0"
 >{{el}}</div>
 
-<div id="example1" v-bind:class="classObject">{{el}}</div >
-
+<div id="example1" v-bind:class="classObject">{{el}}</div>
+<div id="example2" v-bind:style="styleObject">ex2</div>
 
 <script>
 
@@ -33,12 +33,21 @@ var vm1 = new Vue({
         classObject: function () {
             return {
                 active: this.isActive && !this.error,
-                'text-danger': true
-                // this.error && this.error.type === 'fatal'
+                'text-danger': true,
             }
         }
     }
 })
 
-    
+var el2 = '#example2'
+var vm2 = new Vue({
+    el : el2,
+    data: {
+        styleObject: {
+            color: 'red',
+            fontSize: '13px'
+        }
+    }
+})
+
 </script>
