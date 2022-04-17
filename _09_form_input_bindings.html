@@ -1,0 +1,202 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="example-1">
+    <input v-model="message" placeholder="여기를 수정해보세요">
+    <p>메시지: {{ message }}</p>
+</div>
+
+<div id="example-2">
+    <span>여러 줄을 가지는 메시지:</span>
+    <p style="white-space: pre-line">{{ message }}</p>
+    <br>
+    <textarea v-model="message" placeholder="여러줄을 입력해보세요"></textarea>
+</div>
+
+<div id="example-3">
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+</div>
+
+<div id='example-4'>
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+    <label for="jack">Jack</label>
+    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+    <label for="john">John</label>
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+    <label for="mike">Mike</label>
+    <br>
+    <span>체크한 이름: {{ checkedNames }}</span>
+</div>
+
+<div id='example-5'>
+    <input type="radio" id="one" value="One" name="hi" v-model="picked">
+    <label for="one">One</label>
+    <br>
+    <input type="radio" id="two" value="Two" name="hi" v-model="picked">
+    <label for="two">Two</label>
+    <br>
+    <span>선택: {{ picked }}</span>
+    <br>
+</div>
+
+<div id="example-6">
+    <select v-model="selected">
+        <option disabled value="">Please select one</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <span>선택함: {{ selected }}</span>
+    <br>
+</div>
+
+<div id="example-7">
+    <select v-model="selected" multiple>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <br>
+    <span>Selected: {{ selected }}</span>
+    <br>
+</div>
+
+<div id="example_selected">
+    <select v-model="selected">
+        <option v-for="option in options" v-bind:value="option.value">
+        {{ option.text }}
+        </option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+</div>
+
+
+<!-- `picked` 는 선택시 문자열 "a" 입니다 -->
+<input type="radio" v-model="picked" value="a">
+
+<!-- `toggle` 는 true 또는 false 입니다 -->
+<input type="checkbox" v-model="toggle">
+
+<!-- `selected`는 "ABC" 선택시 "abc" 입니다 -->
+<select v-model="selected">
+  <option value="abc">ABC</option>
+</select>
+
+<br>
+<div id="example-value-binding">
+    <input
+    type="checkbox"
+    v-model="toggle"
+    true-value="yes"
+    false-value="no"
+    >
+    <!-- // 체크된 경우
+    vm.toggle === 'yes'
+    // 체크 되지 않은 경우
+    vm.toggle === 'no' -->
+    <div>
+        <input type="radio" v-model="pick" value="one" name="hello" v-bind:value="a">
+        <label for="one">One</label>
+        <br>
+        <input type="radio" v-model="pick" value="two" name="hello" v-bind:value="a">
+        <label for="two">Two</label>
+    </div>
+
+    <br>
+    <select v-model="selected">
+        <!-- inline object literal -->
+        <option v-bind:value="{ number: 123 }">123</option>
+    </select>
+</div>
+
+<script>
+new Vue({
+  el: '#example-1',
+  data: {
+      message: "first message"
+  }
+//   있으나 없으나 똑같음
+//   methods: {
+//     updateInput: function(event) {
+//       var updatedText = event.target.value;
+//       this.message = updatedText;
+//     }
+//   }
+})
+
+new Vue({
+  el: '#example-2',
+  data: {
+      message: "second message"
+  }
+})
+
+new Vue({
+  el: '#example-3',
+  data: {
+      checked: null
+  }
+})
+
+new Vue({
+  el: '#example-4',
+  data: {
+    checkedNames: []
+  }
+})
+
+
+new Vue({
+  el: '#example-5',
+  data: {
+    picked: null
+  }
+})
+
+new Vue({
+  el: '#example-6',
+  data: {
+    selected: null
+  }
+})
+
+new Vue({
+  el: '#example-7',
+  data: {
+    selected: []
+  }
+})
+
+new Vue({
+  el: '#example_selected',
+  data: {
+    selected: 'A',
+    options: [
+      { text: 'One', value: 'A' },
+      { text: 'Two', value: 'B' },
+      { text: 'Three', value: 'C' }
+    ]
+  }
+})
+
+var vm = new Vue({
+  el: '#example-value-binding',
+  data: {
+      toggle: null,
+      pick: null,
+      selected: null,
+      a: null
+  }
+    // 체크된 경우
+    // vm.toggle === 'yes'
+    // 체크 되지 않은 경우
+    // vm.toggle === 'no'
+    // 체크 하면:
+    // vm.pick === vm.a
+    // 선택 하면:
+    // typeof vm.selected // -> 'object'
+    // vm.selected.number // -> 123
+})
+
+
+</script>
